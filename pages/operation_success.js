@@ -11,8 +11,9 @@ const operation_success = () => {
     setAmount(window.localStorage.getItem("operationAmount"));
     setOperation(window.localStorage.getItem("operation"));
     setId(window.localStorage.getItem("id"));
-      const intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       router.push("/");
+      localStorage.clear();
     }, 10000);
     return () => {
       clearInterval(intervalId);
@@ -28,6 +29,7 @@ const operation_success = () => {
         width: "85%",
         mx: "auto",
         display: "flex",
+        borderRadius: "8px",
       }}
     >
       <Typography

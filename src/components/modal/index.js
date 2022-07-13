@@ -14,6 +14,7 @@ const ModalComponent = ({children, title, subtitle, setOpen, open}) => {
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
+    borderRadius: "8px",
     p: 4,
   };
   return (

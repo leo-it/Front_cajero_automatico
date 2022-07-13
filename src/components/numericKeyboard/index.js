@@ -11,7 +11,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
     <>
       <ModalAmount open={open} setOpen={setOpen} />
 
-      <Box sx={{ border: 2, pl: 9, py: 3 }}>
+      <Box sx={{ border: 2, py: 3, borderRadius: '8px', pl:{lg:9,sm:3} }}>
         <Grid container>
           <Grid item xs={4}>
             <Button
@@ -20,7 +20,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "140px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "140px", sm:"80px"}, height: "60px" }}
             >
               <Typography variant="h6">1</Typography>
             </Button>
@@ -32,7 +32,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "100px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "100px", sm:"60px"} , height: "60px" }}
             >
               <Typography variant="h6">2</Typography>
             </Button>
@@ -44,7 +44,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "140px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "140px", sm:"80px"}, height: "60px" }}
             >
               <Typography variant="h6">3</Typography>
             </Button>
@@ -56,7 +56,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "140px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "140px", sm:"80px"}, height: "60px" }}
             >
               <Typography variant="h6">4</Typography>
             </Button>
@@ -68,7 +68,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "100px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "100px", sm:"60px"}, height: "60px" }}
             >
               <Typography variant="h6">5</Typography>
             </Button>
@@ -80,7 +80,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "140px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "140px", sm:"80px"}, height: "60px" }}
             >
               <Typography variant="h6">6</Typography>
             </Button>
@@ -92,7 +92,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "140px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "140px", sm:"80px"}, height: "60px" }}
             >
               <Typography variant="h6">7</Typography>
             </Button>
@@ -104,7 +104,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "100px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "100px", sm:"60px"}, height: "60px" }}
             >
               <Typography variant="h6">8</Typography>
             </Button>
@@ -116,7 +116,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "140px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "140px", sm:"80px"}, height: "60px" }}
             >
               <Typography variant="h6">9</Typography>
             </Button>
@@ -128,7 +128,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "140px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "140px", sm:"80px"}, height: "60px" }}
             >
               <Typography variant="h6">Borrar</Typography>
             </Button>
@@ -140,7 +140,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "100px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "100px", sm:"60px"}, height: "60px" }}
             >
               <Typography variant="h6">0</Typography>
             </Button>
@@ -153,7 +153,7 @@ export const NumericKeyboard = ({ isDisabled, handleClick }) => {
               size="large"
               variant="contained"
               color="warning"
-              sx={{ mb: 2, width: "140px", height: "60px" }}
+              sx={{ mb: 2, width:{lg: "140px", sm:"80px"}, height: "60px" }}
             >
               <Typography variant="h6">Continuar</Typography>
             </Button>

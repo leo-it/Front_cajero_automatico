@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button , Typography} from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 const check_balance = () => {
   const router = useRouter();
@@ -11,8 +11,9 @@ const check_balance = () => {
   //
   useEffect(() => {
     setCredit(window.localStorage.getItem("amount"));
-        const intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       router.push("/");
+      localStorage.clear();
     }, 15000);
     return () => {
       clearInterval(intervalId);
@@ -21,12 +22,11 @@ const check_balance = () => {
   return (
     <>
       <Box className="container__mui">
-      
         <Typography align="center" variant="h4" gutterBottom marginTop={10}>
           Su saldo es
         </Typography>
         <Typography align="center" variant="h3" gutterBottom marginTop={7}>
-        $ {credit ? parseFloat(credit).toLocaleString("en") : 0}{" "}
+          $ {credit ? parseFloat(credit).toLocaleString("en") : 0}{" "}
         </Typography>
         <Typography align="center" variant="h6" gutterBottom marginTop={7}>
           ¿Desea realizar otra operación?
@@ -37,11 +37,9 @@ const check_balance = () => {
             onClick={() => router.push("/operations")}
             variant="contained"
             color="warning"
-            sx={{ height: 50, width:"90px" , mb: 2, mr: 10 }}
+            sx={{ height: 50, width: "90px", mb: 2, mr: 10 }}
           >
-            <Typography  variant="h6"  >
-          Si
-        </Typography>
+            <Typography variant="h6">Si</Typography>
           </Button>{" "}
           <Button
             className=""
@@ -49,11 +47,9 @@ const check_balance = () => {
             onClick={() => router.push("/cancellation")}
             variant="contained"
             color="warning"
-            sx={{ height: 50, width:"90px" , mb: 2 }}
+            sx={{ height: 50, width: "90px", mb: 2 }}
           >
-             <Typography  variant="h6"  >
-          No
-        </Typography>
+            <Typography variant="h6">No</Typography>
           </Button>{" "}
         </Box>
       </Box>

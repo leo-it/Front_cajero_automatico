@@ -11,8 +11,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ModalAmount from "../../components/modalsAmount";
 import { ModalToCancel } from "../modalToCancel";
-import { editAxios } from "../../utils/editAxios";
-import axios from "axios";
+import { editCredit } from "../../services/product";
 
 const InputsOptions = ({ credit, id, token }) => {
   const router = useRouter();
@@ -32,20 +31,7 @@ const InputsOptions = ({ credit, id, token }) => {
     } else {
       if (parseInt(credit) >= parseInt(value)) {
         let newCredit = parseInt(credit) - parseInt(value);
-/*         editAxios(id, token, newCredit,value, router.push("/operation_success"));
- */           axios
-          .put(
-            `http://localhost:4000/products/${id.replace(/"/g, "", "")}`,
-            {
-              amount: newCredit,
-            },
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token.replace(/"/g, "", "")}`,
-              },
-            }
-          )
+        editCredit(id, token, newCredit)
           .then((response) => {
             localStorage.setItem("amount", JSON.stringify(parseInt(newCredit)));
             localStorage.setItem("operation", JSON.stringify("extraccion"));
@@ -67,8 +53,9 @@ const InputsOptions = ({ credit, id, token }) => {
   //useEffect
   //
   useEffect(() => {
-        const intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       router.push("/");
+      localStorage.clear();
     }, 30000);
     return () => {
       clearInterval(intervalId);

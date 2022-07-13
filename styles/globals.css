@@ -24,6 +24,7 @@ a {
   width: 85%;
   margin-right: auto;
   margin-left: auto;
+  border-radius: 8px;
 }
 
 .item--center {
@@ -104,4 +105,5 @@ justify-content: space-around;
   margin-right: 15px;
   padding: 20px;
   padding-left: 40px;
+  border-radius: 8px;
 }

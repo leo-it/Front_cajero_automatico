@@ -3,9 +3,8 @@ import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { NumericKeyboard } from "../src/components/numericKeyboard";
 import ModalAmount from "../src/components/modalsAmount";
-import axios from "axios";
 import { ModalToCancel } from "../src/components/modalToCancel";
-import { editAxios } from "../src/utils/editAxios";
+import { editCredit } from "../src/services/product";
 
 const anothe_amount = () => {
   const [amount, setAmount] = useState("");
@@ -31,12 +30,13 @@ const anothe_amount = () => {
   //useEffects
   //
   useEffect(() => {
-      const intervalId = setInterval(() => {
+    /*  const intervalId = setInterval(() => {
       router.push("/");
+      localStorage.clear();
     }, 30000);
     return () => {
       clearInterval(intervalId);
-    };
+    }; */
   }, [amount, openCancelModal, open]);
 
   useEffect(() => {
@@ -48,21 +48,7 @@ const anothe_amount = () => {
   useEffect(() => {
     if (continueButton && parseInt(credit) >= parseInt(amount)) {
       let newCredit = parseInt(credit) - parseInt(amount);
-      /*       editAxios(id, token, newCredit,amount, router.push("/operation_success"));
-       */
-      axios
-        .put(
-          `http://localhost:4000/products/${id.replace(/"/g, "", "")}`,
-          {
-            amount: newCredit,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token.replace(/"/g, "", "")}`,
-            },
-          }
-        )
+      editCredit(id, token, newCredit)
         .then((response) => {
           localStorage.setItem("amount", JSON.stringify(parseInt(newCredit)));
           localStorage.setItem("operation", JSON.stringify("extracción"));
@@ -88,7 +74,7 @@ const anothe_amount = () => {
   return (
     <>
       <ModalAmount open={open} setOpen={setOpen} />
-      <Box sx={{ mt: 5, mx: 10, border: 2, p: 5 }}>
+      <Box sx={{ mt: 5, mx: 10, border: 2, p: 5, borderRadius: "8px" }}>
         <Typography align="center" variant="h4" sx={{ my: 5 }}>
           Otro monto{" "}
         </Typography>

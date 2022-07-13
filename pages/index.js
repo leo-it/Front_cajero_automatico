@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { NumericKeyboard } from "../src/components/numericKeyboard";
 import { Box } from "@mui/system";
-import { InitialViewLeft } from "../src/components/initialViewLeft";
+import { InitialInputsGroup } from "../src/components/initialInitialInputsGroup";
 import { validate } from "../src/utils/validate";
-import axios from "axios";
 import { Typography } from "@mui/material";
+import { login } from "../src/services/login";
+import { getUser } from "../src/services/product";
 
 export default function InitialView() {
   //
@@ -42,13 +43,7 @@ export default function InitialView() {
   }, [value.pass, value.DNI]);
 
   const getData = (token) => {
-    axios
-      .get("http://localhost:4000/products", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    getUser(token)
       .then((response) => {
         localStorage.setItem(
           "name",
@@ -67,14 +62,7 @@ export default function InitialView() {
 
   useEffect(() => {
     if (value.continueButton) {
-      axios
-        .post("http://localhost:4000/auth/login", {
-          username: value.DNI,
-          password: value.pass,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+      login(value)
         .then((response) => {
           localStorage.setItem(
             "token",
@@ -110,9 +98,9 @@ export default function InitialView() {
         <Typography variant="h4" sx={{ ml: 5, mt: 5 }}>
           Cajero Automático TASI
         </Typography>
-        <Box sx={{ display: "flex", mt: "50px" }}>
-          <InitialViewLeft setInputFocus={setInputFocus} value={value} />
-          <Box sx={{ width: "45%" }}>
+        <Box sx={{ display:{md: "flex"}, mt: "50px" }}>
+          <InitialInputsGroup setInputFocus={setInputFocus} value={value} />
+          <Box sx={{ width: "45%", ml:{sm:"100px", md:0} }}>
             <NumericKeyboard
               handleClick={handleClick}
               isDisabled={isDisabled}

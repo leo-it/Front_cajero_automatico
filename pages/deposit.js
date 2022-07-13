@@ -1,16 +1,15 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NumericKeyboard } from "../src/components/numericKeyboard";
 import { useRouter } from "next/router";
 import { FieldsDeposit } from "../src/components/FieldsDeposit";
 import { ModalToCancel } from "../src/components/modalToCancel";
-import { editAxios } from "../src/utils/editAxios";
+import { editCredit } from "../src/services/product";
 
 //TODO usar localstorash
 const deposit = () => {
   const router = useRouter();
-  
+
   const [openCancelModal, setOpenCancelModal] = useState(false);
   const [amount, setAmount] = useState("");
   const [continueButton, setcontinueButton] = useState(false);
@@ -39,6 +38,7 @@ const deposit = () => {
 
     const intervalId = setInterval(() => {
       router.push("/");
+      localStorage.clear();
     }, 30000);
     return () => {
       clearInterval(intervalId);
@@ -48,21 +48,7 @@ const deposit = () => {
   useEffect(() => {
     if (continueButton) {
       let newCredit = parseInt(credit) + parseInt(amount);
-/*       editAxios(id, token, newCredit,amount, router.push("/operation_success"));
- */
-      axios
-        .put(
-          `http://localhost:4000/products/${id.replace(/"/g, "", "")}`,
-          {
-            amount: newCredit,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token.replace(/"/g, "", "")}`,
-            },
-          }
-        )
+      editCredit(id, token, newCredit)
         .then((response) => {
           localStorage.setItem("amount", JSON.stringify(parseInt(newCredit)));
           localStorage.setItem("operation", JSON.stringify("depósito"));
@@ -118,24 +104,24 @@ const deposit = () => {
 
   return (
     <Box className="container__mui">
-      
-      <Typography align="center" variant="h3" gutterBottom >
+      <Typography align="center" variant="h4" gutterBottom>
         Depósito
       </Typography>
       <Box sx={{ display: "flex" }}>
         <FieldsDeposit value={value} setInputFocus={setInputFocus} />
-        <Box sx={{ p: 1, width: "45%" }}>
-          <Typography align="center" variant="h5" gutterBottom>
+        <Box sx={{ p: 1, width: "45%", ml:10 }}>
+          <Typography align="center" variant="h6" gutterBottom>
             Monto a depositar
           </Typography>
           <Typography align="center" variant="h4" gutterBottom component="div">
-          $ {amount ? parseFloat(amount).toLocaleString("en") : 0}{" "}
+            $ {amount ? parseFloat(amount).toLocaleString("en") : 0}{" "}
           </Typography>
           <NumericKeyboard handleClick={handleClick} isDisabled={isDisabled} />
         </Box>
       </Box>
-      <ModalToCancel open={openCancelModal} setOpen={setOpenCancelModal} />
-
+      <Box sx={{ ml: 16 }}>
+        <ModalToCancel open={openCancelModal} setOpen={setOpenCancelModal} />
+      </Box>
     </Box>
   );
 };

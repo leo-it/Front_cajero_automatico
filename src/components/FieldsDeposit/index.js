@@ -3,7 +3,7 @@ import React from 'react'
 
 export const FieldsDeposit = ({setInputFocus, value}) => {
   return (
-    <Box sx={{ width: "50%", p: 1, ml: 16, mb:6 }}>
+    <Box sx={{ width: "40%", p: 1, ml: 6,mr:2, mb:6 }}>
           <Box sx={{ display: "flex", my: 5 }}>
             <Typography sx={{ mx: 10 }}>PESOS</Typography>
             <Typography sx={{ mx: 3 }}>CANTIDAD</Typography>

@@ -16,7 +16,7 @@ const ModalAmount = ({ setOpen, open }) => {
       open={open}
       setOpen={setOpen}
     >
-      <Box sx={{ width: 600 , mt:6}}>
+      <Box sx={{ width: 600 , mt:6, mx:"auto"}}>
         <Button
           className="btn__modal"
           id="Cancelar"
